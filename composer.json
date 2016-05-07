@@ -1,0 +1,22 @@
+{
+    "name": "progknife/yodlee-api",
+    "description": "Yodlee API SDK for PHP",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/progknife/yodlee-api"
+    },
+    "authors": [
+        {
+            "name": "Karl Manuzon",
+            "email": "karl.manuzon@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yodlee\\": "src/"
+        }
+    }
+}

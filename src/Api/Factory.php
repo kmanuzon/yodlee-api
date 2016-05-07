@@ -9,6 +9,20 @@ use Yodlee\Api\Endpoints\User;
 class Factory
 {
     /**
+     * Cobrand session token.
+     *
+     * @var string
+     */
+    protected $cobSession;
+
+    /**
+     * User session token.
+     *
+     * @var string
+     */
+    protected $userSession;
+
+    /**
      * Create a new API factory instance.
      *
      */
@@ -47,8 +61,8 @@ class Factory
      */
     public function transactions()
     {
-        $user = new Transactions($this);
+        $transactions = new Transactions($this);
 
-        return $user;
+        return $transactions;
     }
 }

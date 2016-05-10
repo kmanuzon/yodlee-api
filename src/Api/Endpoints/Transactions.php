@@ -27,7 +27,7 @@ class Transactions extends Api
      * Get all the transactions of the user in session.
      *
      * @param array
-     * @return \stdClass|bool
+     * @return array
      */
     public function getTransactions(array $parameters = [])
     {
@@ -39,11 +39,11 @@ class Transactions extends Api
 
         $result = Curl::dispatch('GET', $url, $parameters, $headers);
 
-        if (isset($result['error'])) {
+        if (isset($result['error']) || empty($result['body']->transaction)) {
 
-            return false;
+            return [];
         }
 
-        return $result['body'];
+        return $result['body']->transaction;
     }
 }

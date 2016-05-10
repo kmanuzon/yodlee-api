@@ -34,8 +34,8 @@ print '</pre>';
 
 // user transactions.
 $transactions = $yodleeApi->transactions()->getTransactions([
-    'fromDate' => '2014-01-01',
-    'toDate' => '2014-12-31'
+    'fromDate' => '2012-01-01',
+    'toDate'   => '2015-12-31'
 ]);
 print '$transactions<pre>';
 print_r($transactions);

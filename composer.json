@@ -19,10 +19,5 @@
         "psr-4": {
             "Yodlee\\": "src/"
         }
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "php -r \"copy('examples/.env.example', 'examples/.env');\""
-        ]
     }
 }

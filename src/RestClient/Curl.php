@@ -18,9 +18,9 @@ class Curl
      * @param array
      * @return array
      */
-    public static function callApi($method = 'GET', $url = '', array $parameters = [])
+    public static function dispatch($method = 'GET', $url = '', array $parameters = [])
     {
-        $return_values = array();
+        $returnData = array();
 
         $ch = curl_init();
 
@@ -35,40 +35,34 @@ class Curl
 
         $response = curl_exec($ch);
 
-        if (curl_errno($ch)) {
-               $return_values['Error'] = "Failed to reach $url.";
+        if (curl_errno($ch) || empty($response)) {
+            $returnData['error'] = sprintf('Failed to reach %s.', $url);
         } else {
-            if ($response) {
-                if (gettype($response) == "string") {
-                    $result = json_decode($response);
-                    if ($result) {
-                        $exitsError = array_key_exists("Error", $result);
-                        if ($exitsError) {
-                            // @todo
-                            //$return_values["Body"] = self::_getErrors($result);
-                            $return_values["Body"] = 'Get errors';
-                        } else {
-                            $return_values["Body"] = $result;
-                        }
+            if (gettype($response) === 'string') {
+                $result = json_decode($response);
+                if ($result) {
+                    $exitsError = array_key_exists('errorCode', $result);
+                    if ($exitsError) {
+                        $returnData['error'] = sprintf('%s: %s', $result->errorCode, $result->errorMessage);
                     } else {
-                        $result = simplexml_load_string($response);
-                        $return_values["Body"] = $response;
+                        $returnData['body'] = $result;
                     }
                 } else {
-                    $result = json_decode($response);
-                    if ($result === null) {
-                        $return_values['Body'] = "The request does not return any value.";
-                    } else {
-                        $return_values["Body"] = $result;
-                    }
+                    $result = simplexml_load_string($response);
+                    $returnData['body'] = $response;
                 }
             } else {
-                $return_values['Error'] = "Failed to reach $url.";
+                $result = json_decode($response);
+                if ($result === null) {
+                    $returnData['body'] = 'The request does not return any value.';
+                } else {
+                    $returnData['body'] = $result;
+                }
             }
         }
 
         curl_close($ch);
 
-        return $return_values;
+        return $returnData;
     }
 }

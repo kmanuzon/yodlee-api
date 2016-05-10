@@ -9,18 +9,11 @@ use Yodlee\Api\Endpoints\User;
 class Factory
 {
     /**
-     * Cobrand session token.
+     * The session token instance.
      *
-     * @var string
+     * @var \Yodlee\Api\SessionToken
      */
-    protected $cobSession;
-
-    /**
-     * User session token.
-     *
-     * @var string
-     */
-    protected $userSession;
+    protected $sessionToken;
 
     /**
      * Create a new API factory instance.
@@ -31,13 +24,27 @@ class Factory
     }
 
     /**
+     * Get the session token instance.
+     *
+     * @return \Yodlee\Api\SessionToken
+     */
+    public function getSessionToken()
+    {
+        if (empty($this->sessionToken)) {
+            $this->sessionToken = new SessionToken();
+        }
+
+        return $this->sessionToken;
+    }
+
+    /**
      * Get the cobrand endpoint.
      *
      * @return \Yodlee\Api\Endpoints\Cobrand
      */
     public function cobrand()
     {
-        $cobrand = new Cobrand($this);
+        $cobrand = new Cobrand($this, $this->getSessionToken());
 
         return $cobrand;
     }
@@ -49,7 +56,7 @@ class Factory
      */
     public function user()
     {
-        $user = new User($this);
+        $user = new User($this, $this->getSessionToken());
 
         return $user;
     }
@@ -61,7 +68,7 @@ class Factory
      */
     public function transactions()
     {
-        $transactions = new Transactions($this);
+        $transactions = new Transactions($this, $this->getSessionToken());
 
         return $transactions;
     }

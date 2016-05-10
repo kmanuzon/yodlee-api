@@ -2,25 +2,23 @@
 
 namespace Yodlee\Api\Endpoints;
 
+use Yodlee\Api\Api;
 use Yodlee\Api\Factory;
+use Yodlee\Api\SessionToken;
+use Yodlee\RestClient\Curl;
 
 class User
 {
     /**
-     * The API factory instance.
-     *
-     * @var \Yodlee\Api\Factory
-     */
-    protected $factory;
-
-    /**
      * Create a new user endpoint instance.
      *
      * @param \Yodlee\Api\Factory
+     * @param \Yodlee\Api\SessionToken
      */
-    public function __construct(Factory $factory)
+    public function __construct(Factory $factory, SessionToken $sessionToken)
     {
         $this->factory = $factory;
+        $this->sessionToken = $sessionToken;
     }
 
     /**

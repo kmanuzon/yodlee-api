@@ -7,8 +7,10 @@ use Yodlee\Api\Factory;
 use Yodlee\Api\SessionToken;
 use Yodlee\RestClient\Curl;
 
-class User
+class User extends Api
 {
+    const LOGIN_ENDPOINT = '/user/login';
+
     /**
      * Create a new user endpoint instance.
      *
@@ -25,9 +27,37 @@ class User
      * Authenticate user to get user session token.
      *
      * NOTE: The user session token expires in 30 minutes.
+     *
+     * @param string
+     * @param string
+     * @param string
+     * @return bool
      */
-    public function postLogin()
+    public function postLogin($cobrandName, $loginName, $password)
     {
+        $url = $this->getUrl($cobrandName, static::LOGIN_ENDPOINT);
+
+        $parameters = [
+            'loginName'    => $loginName,
+            'password' => $password
+        ];
+
+        $headers = [
+            $this->getSessionToken()->getAuthorizationHeader()
+        ];
+
+        $result = Curl::dispatch('POST', $url, $parameters, $headers);
+
+        if (isset($result['error'])) {
+
+            return false;
+        }
+
+        $this->getSessionToken()->setUserSessionToken(
+            $result['body']->user->session->userSession
+        );
+
+        return true;
     }
 
     /**

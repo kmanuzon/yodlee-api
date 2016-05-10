@@ -69,4 +69,31 @@ class SessionToken
     {
         return $this->userSession;
     }
+
+    /**
+     * Builds authorization header.
+     *
+     * @return string
+     */
+    public function getAuthorizationHeader()
+    {
+        $tokens = [];
+
+        if (! empty($this->getCobrandSessionToken())) {
+            $tokens['cobSession'] = $this->getCobrandSessionToken();
+        }
+
+        if (! empty($this->getUserSessionToken())) {
+            $tokens['userSession'] = $this->getUserSessionToken();
+        }
+
+        $keyVal = array_map(function($key, $value) {
+
+            return sprintf('%s=%s', $key, $value);
+        }, array_keys($tokens), $tokens);
+
+        $header = sprintf('Authorization: {%s}', implode(',', $keyVal));
+
+        return $header;
+    }
 }

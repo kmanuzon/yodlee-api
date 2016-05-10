@@ -7,7 +7,7 @@ use Yodlee\Api\Factory;
 use Yodlee\Api\SessionToken;
 use Yodlee\RestClient\Curl;
 
-class Transactions
+class Transactions extends Api
 {
     /**
      * Create a new transactions endpoint instance.

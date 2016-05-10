@@ -16,15 +16,17 @@ class Curl
      * @param string
      * @param string
      * @param array
+     * @param array
      * @return array
      */
-    public static function dispatch($method = 'GET', $url = '', array $parameters = [])
+    public static function dispatch($method = 'GET', $url = '', array $parameters = [], array $headers = [])
     {
         $returnData = array();
 
         $ch = curl_init();
 
         curl_setopt_array($ch, [
+            CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_URL            => $url,
             CURLOPT_POSTFIELDS     => http_build_query($parameters),

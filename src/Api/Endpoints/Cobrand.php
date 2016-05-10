@@ -9,7 +9,7 @@ use Yodlee\RestClient\Curl;
 
 class Cobrand extends Api
 {
-    const COBRAND_LOGIN_ENDPOINT = '/cobrand/login';
+    const LOGIN_ENDPOINT = '/cobrand/login';
 
     /**
      * Create a new cobrand endpoint instance.
@@ -33,10 +33,9 @@ class Cobrand extends Api
      */
     public function postLogin($cobrandName, $cobrandLogin, $cobrandPassword)
     {
-        $url = $this->getUrl($cobrandName, static::COBRAND_LOGIN_ENDPOINT);
+        $url = $this->getUrl($cobrandName, static::LOGIN_ENDPOINT);
 
         $result = Curl::dispatch('POST', $url, [
-            'cobrandName'     => $cobrandName,
             'cobrandLogin'    => $cobrandLogin,
             'cobrandPassword' => $cobrandPassword
         ]);

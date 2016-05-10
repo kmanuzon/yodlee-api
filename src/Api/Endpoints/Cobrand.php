@@ -28,12 +28,11 @@ class Cobrand extends Api
      *
      * @param string
      * @param string
-     * @param string
      * @return bool
      */
-    public function postLogin($cobrandName, $cobrandLogin, $cobrandPassword)
+    public function postLogin($cobrandLogin, $cobrandPassword)
     {
-        $url = $this->getUrl($cobrandName, static::LOGIN_ENDPOINT);
+        $url = $this->getUrl(static::LOGIN_ENDPOINT);
 
         $result = Curl::dispatch('POST', $url, [
             'cobrandLogin'    => $cobrandLogin,

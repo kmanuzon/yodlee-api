@@ -9,6 +9,8 @@ use Yodlee\RestClient\Curl;
 
 class Transactions extends Api
 {
+    const TRANSACTIONS_ENDPOINT = '/transactions';
+
     /**
      * Create a new transactions endpoint instance.
      *
@@ -24,8 +26,24 @@ class Transactions extends Api
     /**
      * Get all the transactions of the user in session.
      *
+     * @param array
+     * @return \stdClass|bool
      */
-    public function getTransactions()
+    public function getTransactions(array $parameters = [])
     {
+        $url = $this->getUrl(static::TRANSACTIONS_ENDPOINT);
+
+        $headers = [
+            $this->getSessionToken()->getAuthorizationHeader()
+        ];
+
+        $result = Curl::dispatch('GET', $url, $parameters, $headers);
+
+        if (isset($result['error'])) {
+
+            return false;
+        }
+
+        return $result['body'];
     }
 }

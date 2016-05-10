@@ -59,14 +59,13 @@ abstract class Api
      * Build the full URL to the endpoint.
      *
      * @param string
-     * @param string
      * @return string
      */
-    protected function getUrl($cobrandName, $endpoint)
+    protected function getUrl($endpoint)
     {
         $url = vsprintf('%s/%s/v1/%s', [
             $this->getBaseUrl(),
-            trim($cobrandName, '/'),
+            trim($this->getSessionToken()->getCobrandName(), '/'),
             trim($endpoint, '/')
         ]);
 

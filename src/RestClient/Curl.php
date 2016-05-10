@@ -25,13 +25,19 @@ class Curl
 
         $ch = curl_init();
 
+        if ($method === 'GET' && strpos($url, '?') === false) {
+            $url = sprintf('%s?%s', $url, http_build_query($parameters));
+            $parameters = [];
+        }
+
         curl_setopt_array($ch, [
             CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_URL            => $url,
             CURLOPT_POSTFIELDS     => http_build_query($parameters),
+            CURLOPT_HEADER         => false,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_TIMEOUT        => 360
         ]);
 

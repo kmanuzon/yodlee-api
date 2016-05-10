@@ -30,16 +30,15 @@ class User extends Api
      *
      * @param string
      * @param string
-     * @param string
      * @return bool
      */
-    public function postLogin($cobrandName, $loginName, $password)
+    public function postLogin($loginName, $password)
     {
-        $url = $this->getUrl($cobrandName, static::LOGIN_ENDPOINT);
+        $url = $this->getUrl(static::LOGIN_ENDPOINT);
 
         $parameters = [
-            'loginName'    => $loginName,
-            'password' => $password
+            'loginName' => $loginName,
+            'password'  => $password
         ];
 
         $headers = [

@@ -18,9 +18,11 @@ class Factory
     /**
      * Create a new API factory instance.
      *
+     * @param string
      */
-    public function __construct()
+    public function __construct($cobrandName = '')
     {
+        $this->getSessionToken()->setCobrandName($cobrandName);
     }
 
     /**

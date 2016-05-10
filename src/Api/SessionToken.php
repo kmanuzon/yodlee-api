@@ -5,6 +5,15 @@ namespace Yodlee\Api;
 class SessionToken
 {
     /**
+     * The cobrand name.
+     *
+     * This will appear in the URL for API calls.
+     *
+     * @var string
+     */
+    protected $cobrandName;
+
+    /**
      * The cobrand session token.
      *
      * @var string
@@ -23,11 +32,33 @@ class SessionToken
      *
      * @param string
      * @param string
+     * @param string
      */
-    public function __construct($cobSession = '', $userSession = '')
+    public function __construct($cobrandName = '', $cobSession = '', $userSession = '')
     {
+        $this->setCobrandName($cobrandName);
         $this->setCobrandSessionToken($cobSession);
         $this->setUserSessionToken($userSession);
+    }
+
+    /**
+     * Set the cobrand name.
+     *
+     * @param string
+     */
+    public function setCobrandName($cobrandName)
+    {
+        $this->cobrandName = $cobrandName;
+    }
+
+    /**
+     * Get the cobrand name.
+     *
+     * @return string
+     */
+    public function getCobrandName()
+    {
+        return $this->cobrandName;
     }
 
     /**

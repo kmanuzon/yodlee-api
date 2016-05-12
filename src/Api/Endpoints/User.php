@@ -3,26 +3,10 @@
 namespace Yodlee\Api\Endpoints;
 
 use Yodlee\Api\Api;
-use Yodlee\Api\Factory;
-use Yodlee\Api\SessionToken;
 use Yodlee\RestClient\Curl;
 
 class User extends Api
 {
-    const LOGIN_ENDPOINT = '/user/login';
-
-    /**
-     * Create a new user endpoint instance.
-     *
-     * @param \Yodlee\Api\Factory
-     * @param \Yodlee\Api\SessionToken
-     */
-    public function __construct(Factory $factory, SessionToken $sessionToken)
-    {
-        $this->factory = $factory;
-        $this->sessionToken = $sessionToken;
-    }
-
     /**
      * Authenticate user to get user session token.
      *
@@ -34,7 +18,7 @@ class User extends Api
      */
     public function postLogin($loginName, $password)
     {
-        $url = $this->getUrl(static::LOGIN_ENDPOINT);
+        $url = $this->getUrl(static::USER_LOGIN_ENDPOINT);
 
         $parameters = [
             'loginName' => $loginName,

@@ -2,8 +2,15 @@
 
 namespace Yodlee\Api;
 
+use Yodlee\Api\Factory;
+use Yodlee\Api\SessionToken;
+
 abstract class Api
 {
+    const COBRAND_LOGIN_ENDPOINT = '/cobrand/login';
+    const TRANSACTIONS_ENDPOINT  = '/transactions';
+    const USER_LOGIN_ENDPOINT    = '/user/login';
+
     /**
      * The API factory instance.
      *
@@ -24,6 +31,18 @@ abstract class Api
      * @var string
      */
     protected $baseUrl = 'https://developer.api.yodlee.com/ysl';
+
+    /**
+     * Create a new endpoint instance.
+     *
+     * @param \Yodlee\Api\Factory
+     * @param \Yodlee\Api\SessionToken
+     */
+    public function __construct(Factory $factory, SessionToken $sessionToken)
+    {
+        $this->factory = $factory;
+        $this->sessionToken = $sessionToken;
+    }
 
     /**
      * Get the API factory instance.

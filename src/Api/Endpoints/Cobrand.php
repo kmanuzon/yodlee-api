@@ -3,26 +3,10 @@
 namespace Yodlee\Api\Endpoints;
 
 use Yodlee\Api\Api;
-use Yodlee\Api\Factory;
-use Yodlee\Api\SessionToken;
 use Yodlee\RestClient\Curl;
 
 class Cobrand extends Api
 {
-    const LOGIN_ENDPOINT = '/cobrand/login';
-
-    /**
-     * Create a new cobrand endpoint instance.
-     *
-     * @param \Yodlee\Api\Factory
-     * @param \Yodlee\Api\SessionToken
-     */
-    public function __construct(Factory $factory, SessionToken $sessionToken)
-    {
-        $this->factory = $factory;
-        $this->sessionToken = $sessionToken;
-    }
-
     /**
      * Authenticate cobrand to get cobrand session token.
      *
@@ -32,7 +16,7 @@ class Cobrand extends Api
      */
     public function postLogin($cobrandLogin, $cobrandPassword)
     {
-        $url = $this->getUrl(static::LOGIN_ENDPOINT);
+        $url = $this->getUrl(static::COBRAND_LOGIN_ENDPOINT);
 
         $result = Curl::dispatch('POST', $url, [
             'cobrandLogin'    => $cobrandLogin,

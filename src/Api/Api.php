@@ -7,9 +7,16 @@ use Yodlee\Api\SessionToken;
 
 abstract class Api
 {
-    const COBRAND_LOGIN_ENDPOINT = '/cobrand/login';
-    const TRANSACTIONS_ENDPOINT  = '/transactions';
-    const USER_LOGIN_ENDPOINT    = '/user/login';
+    /**
+     * Formatted string API endpoints.
+     *
+     * @var string
+     */
+    const COBRAND_LOGIN_ENDPOINT    = '/cobrand/login';
+    const PROVIDERS_ENDPOINT        = '/providers';
+    const PROVIDERS_DETAIL_ENDPOINT = '/providers/%s';
+    const TRANSACTIONS_ENDPOINT     = '/transactions';
+    const USER_LOGIN_ENDPOINT       = '/user/login';
 
     /**
      * The API factory instance.

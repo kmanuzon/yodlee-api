@@ -3,6 +3,7 @@
 namespace Yodlee\Api;
 
 use Yodlee\Api\Endpoints\Cobrand;
+use Yodlee\Api\Endpoints\Providers;
 use Yodlee\Api\Endpoints\Transactions;
 use Yodlee\Api\Endpoints\User;
 
@@ -46,21 +47,21 @@ class Factory
      */
     public function cobrand()
     {
-        $cobrand = new Cobrand($this, $this->getSessionToken());
+        $endpoint = new Cobrand($this, $this->getSessionToken());
 
-        return $cobrand;
+        return $endpoint;
     }
 
     /**
-     * Get the user endpoint.
+     * Get the providers endpoint.
      *
-     * @return \Yodlee\Api\Endpoints\User
+     * @return \Yodlee\Api\Endpoints\Providers
      */
-    public function user()
+    public function providers()
     {
-        $user = new User($this, $this->getSessionToken());
+        $endpoint = new Providers($this, $this->getSessionToken());
 
-        return $user;
+        return $endpoint;
     }
 
     /**
@@ -70,8 +71,20 @@ class Factory
      */
     public function transactions()
     {
-        $transactions = new Transactions($this, $this->getSessionToken());
+        $endpoint = new Transactions($this, $this->getSessionToken());
 
-        return $transactions;
+        return $endpoint;
+    }
+
+    /**
+     * Get the user endpoint.
+     *
+     * @return \Yodlee\Api\Endpoints\User
+     */
+    public function user()
+    {
+        $endpoint = new User($this, $this->getSessionToken());
+
+        return $endpoint;
     }
 }

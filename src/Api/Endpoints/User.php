@@ -16,7 +16,7 @@ class User extends Api
      * @param string
      * @return bool
      */
-    public function postLogin($loginName, $password)
+    public function login($loginName, $password)
     {
         $url = $this->getUrl(static::USER_LOGIN_ENDPOINT);
 
@@ -46,8 +46,25 @@ class User extends Api
     /**
      * Log user out of the Yodlee system.
      *
+     * @return bool
      */
-    public function postLogout()
+    public function logout()
     {
+        $url = $this->getUrl(static::USER_LOGOUT_ENDPOINT);
+
+        $headers = [
+            $this->getSessionToken()->getAuthorizationHeader()
+        ];
+
+        $result = Curl::dispatch('POST', $url, [], $headers);
+
+        if (isset($result['error'])) {
+
+            return false;
+        }
+
+        $this->getSessionToken()->setUserSessionToken('');
+
+        return true;
     }
 }

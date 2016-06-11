@@ -15,7 +15,7 @@ $dotenv->load();
 $yodlee = new \Yodlee\Api\Factory(getenv('COBRAND_NAME'));
 
 // cobrand login.
-$cobrandLogin = $yodlee->cobrand()->postLogin(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
+$cobrandLogin = $yodlee->cobrand()->login(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
 print '$cobrandLogin<pre>';
 var_dump($cobrandLogin);
 print '</pre>';
@@ -24,7 +24,7 @@ var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
 
 // provider detail for boa.
-$providerDetail = $yodlee->providers()->getProvider(2852);
+$providerDetail = $yodlee->providers()->getDetails(2852);
 print '$providerDetail<pre>';
 print_r($providerDetail);
 print '</pre>';

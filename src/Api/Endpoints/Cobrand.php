@@ -14,7 +14,7 @@ class Cobrand extends Api
      * @param string
      * @return bool
      */
-    public function postLogin($cobrandLogin, $cobrandPassword)
+    public function login($cobrandLogin, $cobrandPassword)
     {
         $url = $this->getUrl(static::COBRAND_LOGIN_ENDPOINT);
 
@@ -38,8 +38,48 @@ class Cobrand extends Api
     /**
      * Log cobrand out of the Yodlee system.
      *
+     * @return bool
      */
-    public function postLogout()
+    public function logout()
     {
+        $url = $this->getUrl(static::COBRAND_LOGOUT_ENDPOINT);
+
+        $headers = [
+            $this->getSessionToken()->getAuthorizationHeader()
+        ];
+
+        $result = Curl::dispatch('POST', $url, [], $headers);
+
+        if (isset($result['error'])) {
+
+            return false;
+        }
+
+        $this->getSessionToken()->setCobrandSessionToken('');
+
+        return true;
+    }
+
+    /**
+     * Get the public key for use with encrypting user credentials.
+     *
+     * @return string
+     */
+    public function getPublicKey()
+    {
+        $url = $this->getUrl(static::COBRAND_PUBLIC_KEY_ENDPOINT);
+
+        $headers = [
+            $this->getSessionToken()->getAuthorizationHeader()
+        ];
+
+        $result = Curl::dispatch('GET', $url, [], $headers);
+
+        if (isset($result['error'])) {
+
+            return false;
+        }
+
+        return $result['body'];
     }
 }

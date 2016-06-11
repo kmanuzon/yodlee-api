@@ -12,11 +12,14 @@ abstract class Api
      *
      * @var string
      */
-    const COBRAND_LOGIN_ENDPOINT    = '/cobrand/login';
-    const PROVIDERS_ENDPOINT        = '/providers';
-    const PROVIDERS_DETAIL_ENDPOINT = '/providers/%s';
-    const TRANSACTIONS_ENDPOINT     = '/transactions';
-    const USER_LOGIN_ENDPOINT       = '/user/login';
+    const COBRAND_LOGIN_ENDPOINT      = '/cobrand/login';
+    const COBRAND_LOGOUT_ENDPOINT     = '/cobrand/logout';
+    const COBRAND_PUBLIC_KEY_ENDPOINT = '/cobrand/publicKey';
+    const PROVIDERS_ENDPOINT          = '/providers';
+    const PROVIDERS_DETAIL_ENDPOINT   = '/providers/%s';
+    const TRANSACTIONS_ENDPOINT       = '/transactions';
+    const USER_LOGIN_ENDPOINT         = '/user/login';
+    const USER_LOGOUT_ENDPOINT        = '/user/logout';
 
     /**
      * The API factory instance.

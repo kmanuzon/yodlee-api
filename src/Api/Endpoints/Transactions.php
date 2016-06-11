@@ -13,7 +13,7 @@ class Transactions extends Api
      * @param array
      * @return array
      */
-    public function getTransactions(array $parameters = [])
+    public function get(array $parameters = [])
     {
         $url = $this->getUrl(static::TRANSACTIONS_ENDPOINT);
 

@@ -22,12 +22,3 @@ print '</pre>';
 print 'getCobrandSessionToken()<pre>';
 var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
-
-// user login.
-$userLogin = $yodlee->user()->login(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
-print '$userLogin<pre>';
-var_dump($userLogin);
-print '</pre>';
-print 'getUserSessionToken()<pre>';
-var_dump($yodlee->getSessionToken()->getUserSessionToken());
-print '</pre>';

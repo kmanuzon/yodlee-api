@@ -15,7 +15,7 @@ $dotenv->load();
 $yodlee = new \Yodlee\Api\Factory(getenv('COBRAND_NAME'));
 
 // cobrand login.
-$cobrandLogin = $yodlee->cobrand()->postLogin(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
+$cobrandLogin = $yodlee->cobrand()->login(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
 print '$cobrandLogin<pre>';
 var_dump($cobrandLogin);
 print '</pre>';
@@ -24,7 +24,7 @@ var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
 
 // user login.
-$userLogin = $yodlee->user()->postLogin(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
+$userLogin = $yodlee->user()->login(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
 print '$userLogin<pre>';
 var_dump($userLogin);
 print '</pre>';
@@ -33,7 +33,7 @@ var_dump($yodlee->getSessionToken()->getUserSessionToken());
 print '</pre>';
 
 // user transactions.
-$transactions = $yodlee->transactions()->getTransactions([
+$transactions = $yodlee->transactions()->get([
     'fromDate' => '2012-01-01',
     'toDate'   => '2015-12-31'
 ]);

@@ -13,7 +13,7 @@ class Providers extends Api
      * @param array
      * @return array
      */
-    public function getProviders(array $parameters = [])
+    public function get(array $parameters = [])
     {
         $url = $this->getUrl(static::PROVIDERS_ENDPOINT);
 
@@ -37,7 +37,7 @@ class Providers extends Api
      * @param int
      * @return stdClass
      */
-    public function getProvider($providerId)
+    public function getDetails($providerId)
     {
         $url = sprintf($this->getUrl(static::PROVIDERS_DETAIL_ENDPOINT), $providerId);
 

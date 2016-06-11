@@ -31,3 +31,12 @@ print '</pre>';
 print 'getUserSessionToken()<pre>';
 var_dump($yodlee->getSessionToken()->getUserSessionToken());
 print '</pre>';
+
+// user logout.
+$userLogout = $yodlee->user()->logout();
+print '$userLogout<pre>';
+var_dump($userLogout);
+print '</pre>';
+print 'getUserSessionToken()<pre>';
+var_dump($yodlee->getSessionToken()->getUserSessionToken());
+print '</pre>';

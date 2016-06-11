@@ -23,11 +23,19 @@ print 'getCobrandSessionToken()<pre>';
 var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
 
-// user login.
-$userLogin = $yodlee->user()->login(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
-print '$userLogin<pre>';
-var_dump($userLogin);
+// cobrand logout.
+$cobrandLogout = $yodlee->cobrand()->logout();
+print '$cobrandLogout<pre>';
+var_dump($cobrandLogout);
 print '</pre>';
-print 'getUserSessionToken()<pre>';
-var_dump($yodlee->getSessionToken()->getUserSessionToken());
+print 'getCobrandSessionToken()<pre>';
+var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
+
+/*
+// cobrand public key.
+$cobrandGetPublicKey = $yodlee->cobrand()->getPublicKey();
+print '$cobrandGetPublicKey<pre>';
+var_dump($cobrandGetPublicKey);
+print '</pre>';
+*/

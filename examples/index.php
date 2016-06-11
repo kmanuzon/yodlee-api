@@ -17,6 +17,7 @@
     <li><a href="transactions.php">User's Transactions</a></li>
     <li><a href="providers.php">Providers (Top 10)</a></li>
     <li><a href="provider_details.php">Provider Details (Bank of America)</a></li>
+    <li><a href="provider_account_add.php">Add Provider Account</a></li>
 </ul>
 </body>
 </html>

@@ -12,6 +12,7 @@ class CobrandTest extends TestCase
 
         $this->assertInternalType('boolean', $result);
     }
+
     public function testLogout()
     {
         $yodlee = new \Yodlee\Api\Factory('');

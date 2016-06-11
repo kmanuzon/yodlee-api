@@ -119,7 +119,7 @@ class User extends Api
     }
 
     /**
-     * Delete the logged in user from Yodlee system under the cobrand.
+     * Delete the authenticated user from Yodlee system under the cobrand.
      *
      * NOTE: This cannot be undone.
      *

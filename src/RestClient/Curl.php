@@ -25,27 +25,40 @@ class Curl
 
         $ch = curl_init();
 
-        if ($method === 'GET' && strpos($url, '?') === false) {
+        if ($method === 'GET' && ! empty($parameters) && strpos($url, '?') === false) {
             $url = sprintf('%s?%s', $url, http_build_query($parameters));
             $parameters = [];
+        }
+
+        if (in_array('Content-Type: application/json', $headers)) {
+            $postFields = json_encode($parameters);
+        } else {
+            $postFields = http_build_query($parameters);
         }
 
         curl_setopt_array($ch, [
             CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_URL            => $url,
-            CURLOPT_POSTFIELDS     => http_build_query($parameters),
-            CURLOPT_HEADER         => false,
+            CURLOPT_POSTFIELDS     => $postFields,
+            CURLINFO_HEADER_OUT    => true,
+            CURLOPT_HEADER         => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_TIMEOUT        => 360
         ]);
 
         $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $headerOut = curl_getinfo($ch, CURLINFO_HEADER_OUT);
+        $header = substr($response, 0, $headerSize);
+        $response = substr($response, $headerSize);
 
-        if (curl_errno($ch) || empty($response)) {
+        if (curl_errno($ch)) {
             $returnData['error'] = sprintf('Failed to reach %s.', $url);
         } else {
+            $returnData['http_code'] = $httpCode;
             if (gettype($response) === 'string') {
                 $result = json_decode($response);
                 if ($result) {
@@ -68,6 +81,24 @@ class Curl
                 }
             }
         }
+
+        /*
+        print '<br>';
+        print str_repeat('=', 40);
+        print '<br>';
+        print '</pre>';
+        print 'CURL REQUEST HEADER<pre>';
+        print_r($headerOut);
+        print '</pre>';
+        print 'CURL RESPONSE HEADER<pre>';
+        print_r($header);
+        print '</pre>';
+        print 'CURL RESPONSE BODY<pre>';
+        print_r($response);
+        print '</pre>';
+        print str_repeat('=', 40);
+        print '<br>';
+        */
 
         curl_close($ch);
 

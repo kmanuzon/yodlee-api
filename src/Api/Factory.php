@@ -4,6 +4,7 @@ namespace Yodlee\Api;
 
 use Yodlee\Api\Endpoints\Cobrand;
 use Yodlee\Api\Endpoints\Providers;
+use Yodlee\Api\Endpoints\ProviderAccounts;
 use Yodlee\Api\Endpoints\Transactions;
 use Yodlee\Api\Endpoints\User;
 
@@ -60,6 +61,18 @@ class Factory
     public function providers()
     {
         $endpoint = new Providers($this, $this->getSessionToken());
+
+        return $endpoint;
+    }
+
+    /**
+     * Get the provider accounts endpoint.
+     *
+     * @return \Yodlee\Api\Endpoints\ProviderAccounts
+     */
+    public function providerAccounts()
+    {
+        $endpoint = new ProviderAccounts($this, $this->getSessionToken());
 
         return $endpoint;
     }

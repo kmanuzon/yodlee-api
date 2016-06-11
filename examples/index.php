@@ -13,6 +13,7 @@
     <li><a href="cobrand_logout.php">Cobrand Logout</a></li>
     <li><a href="user_login.php">User Login</a></li>
     <li><a href="user_logout.php">User Logout</a></li>
+    <li><a href="user_register.php">User Register</a></li>
     <li><a href="transactions.php">User's Transactions</a></li>
     <li><a href="providers.php">Providers (Top 10)</a></li>
     <li><a href="provider_details.php">Provider Details (Bank of America)</a></li>

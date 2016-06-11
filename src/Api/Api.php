@@ -20,6 +20,8 @@ abstract class Api
     const TRANSACTIONS_ENDPOINT       = '/transactions';
     const USER_LOGIN_ENDPOINT         = '/user/login';
     const USER_LOGOUT_ENDPOINT        = '/user/logout';
+    const USER_REGISTER_ENDPOINT      = '/user/register';
+    const USER_UNREGISTER_ENDPOINT    = '/user/unregister';
 
     /**
      * The API factory instance.

@@ -13,6 +13,9 @@ class Curl
      * @see http://php.net/manual/en/function.curl-setopt.php#84916
      * @see http://stackoverflow.com/a/4073451/4183317
      *
+     * Setting request body w/ json content type.
+     * @see http://www.lornajane.net/posts/2011/posting-json-data-with-php-curl
+     *
      * @param string
      * @param string
      * @param array

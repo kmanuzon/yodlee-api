@@ -16,7 +16,7 @@ $yodlee->cobrand()->login('user1234', 'pass1234');
 $providers = $yodlee->providers()->get();
 ```
 
-Check the **examples/** directory for configuration and more usage samples.
+Check the **examples/** directory for more usage samples and configuration.
 
 ## Installation with Composer
 `composer require progknife/yodlee-api`
@@ -24,21 +24,35 @@ Check the **examples/** directory for configuration and more usage samples.
 ## API Reference
 
 ### `cobrand()`
-* `login(string $username, string $password)` Authenticates the cobrand.
-* `logout()` Ends the authenticated cobrand's session.
+| Return | Method | Description |
+|----|----|----|
+| bool | `login(string $username, string $password)` | Authenticates the cobrand. |
+| bool | `logout()` | Ends the authenticated cobrand's session. |
 
 ### `user()`
-* `login(string $username, string $password)` Authenticates the user.
-* `logout()` Ends the authenticated user's session.
-* `register(string $username, string $password, string $email)` Register and authenticates the user to Yodlee.
-* `unregister()` Deletes the authenticated user's account from Yodlee.
+| Return | Method | Description |
+|----|----|----|
+| bool | `login(string $username, string $password)` | Authenticates the user. |
+| bool | `logout()` | Ends the authenticated user's session. |
+| int\|bool | `register(string $username, string $password, string $email)` | Register and authenticates the user to Yodlee. |
+| bool | `unregister()` | Deletes the authenticated user data from Yodlee. |
 
 ### `providers()`
-* `get([array $filters])` Fetch all available providers.
-* `getDetails(int $providerId)` Fetch a provider's details including the login form.
+| Return | Method | Description |
+|----|----|----|
+| array | `get([array $filters])` | Fetch all providers supported by Yodlee. |
+| object | getDetails(int $providerId) | Fetch the provider's details including the login form.
 
 ### `providerAccounts()`
-* `add(int $providerId, array $fields)` Add a provider to user. Refer to [Yodlee API Documentation](https://developer.yodlee.com/apidocs/index.php#!/providerAccounts/addAccount) for more details on _$fields_ parameter.
+| Return | Method | Description |
+|----|----|----|
+| object | `find(int $providerAccountId)` | Fetch the provider account by ID. |
+| array | `get()` | Fetch all provider accounts added by the authenticated user. |
+| object | `add(int $providerId, array $fields)` | Add a provider to user. Refer to [Yodlee API Documentation](https://developer.yodlee.com/apidocs/index.php#!/providerAccounts/addAccount) for more details on _$fields_ parameter. |
+| object | `update(string $providerAccountIds, array $credentialsParam)`| Update one or multiple provider account. |
+| bool | `delete(int $providerAccountId)` | Delete the provider account. |
 
 ### `transactions()`
-* `get([array $filters])` Fetch all available transactions of the authenticated user.
+| Return | Method | Description |
+|----|----|----|
+| array | `get([array $filters])` | Fetch all transactions of the authenticated user. |

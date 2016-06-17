@@ -41,7 +41,7 @@ Check the **examples/** directory for more usage samples and configuration.
 | Return | Method | Description |
 |----|----|----|
 | array | `get([array $filters])` | Fetch all providers supported by Yodlee. |
-| object | getDetails(int $providerId) | Fetch the provider's details including the login form.
+| object | getDetail(int $providerId) | Fetch the provider details including the login form.
 
 ### `providerAccounts()`
 | Return | Method | Description |

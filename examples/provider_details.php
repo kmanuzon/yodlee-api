@@ -23,8 +23,17 @@ print 'getCobrandSessionToken()<pre>';
 var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
 print '</pre>';
 
+// user login.
+$userLogin = $yodlee->user()->login(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
+print '$userLogin<pre>';
+var_dump($userLogin);
+print '</pre>';
+print 'getUserSessionToken()<pre>';
+var_dump($yodlee->getSessionToken()->getUserSessionToken());
+print '</pre>';
+
 // provider detail for boa.
-$providerDetail = $yodlee->providers()->getDetails(2852);
+$providerDetail = $yodlee->providers()->getDetail(2852);
 print '$providerDetail<pre>';
 print_r($providerDetail);
 print '</pre>';

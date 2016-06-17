@@ -32,12 +32,12 @@ class Providers extends Api
     }
 
     /**
-     * Get provider details.
+     * Get more detail about the provider, e.g. login form.
      *
      * @param int
      * @return stdClass
      */
-    public function getDetails($providerId)
+    public function getDetail($providerId)
     {
         $url = sprintf($this->getUrl(static::PROVIDERS_DETAIL_ENDPOINT), $providerId);
 

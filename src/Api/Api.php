@@ -15,8 +15,8 @@ abstract class Api
     const COBRAND_LOGIN_ENDPOINT      = '/cobrand/login';
     const COBRAND_LOGOUT_ENDPOINT     = '/cobrand/logout';
     const COBRAND_PUBLIC_KEY_ENDPOINT = '/cobrand/publicKey';
-    const PROVIDERS_ENDPOINT          = '/providers';
     const PROVIDER_ACCOUNTS_ENDPOINT  = '/providers/providerAccounts';
+    const PROVIDERS_ENDPOINT          = '/providers';
     const PROVIDERS_DETAIL_ENDPOINT   = '/providers/%s';
     const TRANSACTIONS_ENDPOINT       = '/transactions';
     const USER_LOGIN_ENDPOINT         = '/user/login';

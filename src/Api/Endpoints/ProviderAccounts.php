@@ -46,7 +46,7 @@ class ProviderAccounts extends Api
 
         $result = Curl::dispatch('GET', $url, [], $headers);
 
-        if (isset($result['error'])) {
+        if (isset($result['error']) || empty($result['body']->providerAccount)) {
 
             return [];
         }

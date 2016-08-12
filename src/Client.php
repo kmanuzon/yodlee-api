@@ -46,4 +46,14 @@ class Client
     {
         return new Cobrand($this->sessionManager, $this->httpClient);
     }
+
+    /**
+     * Get the user API.
+     *
+     * @return \YodleeApi\Api\User
+     */
+    public function user()
+    {
+        return new User($this->sessionManager, $this->httpClient);
+    }
 }

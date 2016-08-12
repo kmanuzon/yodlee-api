@@ -3,6 +3,7 @@
 namespace YodleeApi;
 
 use YodleeApi\Api\Cobrand;
+use YodleeApi\Api\Providers;
 use YodleeApi\Api\Transactions;
 use YodleeApi\Api\User;
 
@@ -46,6 +47,16 @@ class Client
     public function cobrand()
     {
         return new Cobrand($this->sessionManager, $this->httpClient);
+    }
+
+    /**
+     * Get the providers API.
+     *
+     * @return \YodleeApi\Api\Providers
+     */
+    public function providers()
+    {
+        return new Providers($this->sessionManager, $this->httpClient);
     }
 
     /**

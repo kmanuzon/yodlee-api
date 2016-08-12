@@ -13,11 +13,13 @@
     ],
     "require": {
         "php": ">=5.5.9",
+    },
+    "require-dev": {
         "vlucas/phpdotenv": "~2.2"
     },
     "autoload": {
         "psr-4": {
-            "Yodlee\\": "src/"
+            "YodleeApi\\": "src/"
         }
     }
 }

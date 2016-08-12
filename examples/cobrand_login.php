@@ -12,13 +12,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$yodlee = new \Yodlee\Api\Factory(getenv('COBRAND_NAME'));
+$yodleeApi = new \YodleeApi\Client(getenv('YODLEEAPI_URL'));
 
-// cobrand login.
-$cobrandLogin = $yodlee->cobrand()->login(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
-print '$cobrandLogin<pre>';
-var_dump($cobrandLogin);
-print '</pre>';
-print 'getCobrandSessionToken()<pre>';
-var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
+$response = $yodleeApi->cobrand()->login(getenv('YODLEEAPI_COBRAND_LOGIN'), getenv('YODLEEAPI_COBRAND_PASSWORD'));
+
+print 'RESULT<pre>';
+var_dump($response);
 print '</pre>';

@@ -17,10 +17,10 @@ $yodleeApi = new \YodleeApi\Client(getenv('YODLEEAPI_URL'));
 $response = $yodleeApi->cobrand()->login(getenv('YODLEEAPI_COBRAND_LOGIN'), getenv('YODLEEAPI_COBRAND_PASSWORD'));
 $response = $yodleeApi->user()->login(getenv('YODLEEAPI_USER_LOGIN'), getenv('YODLEEAPI_USER_PASSWORD'));
 $response = $yodleeApi->transactions()->get([
-    'fromDate' => '2012-01-01',
-    'toDate'   => '2015-12-31'
+    'fromDate' => '2000-01-01',
+    'toDate'   => date('Y-m-d')
 ]);
 
 print 'RESULT<pre>';
-var_dump($response);
+print_r($response);
 print '</pre>';

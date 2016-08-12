@@ -12,7 +12,7 @@ class Transactions extends ApiAbstract
      */
     public function get(array $parameters = [])
     {
-        $url = $this->getEndpoint('/transactions');
+        $url = $this->getEndpoint('/transactions', $parameters);
 
         $requestHeaders = [
             $this->sessionManager->getAuthorizationHeaderString()

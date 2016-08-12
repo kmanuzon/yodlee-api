@@ -7,6 +7,12 @@ use YodleeApi\SessionManager;
 
 abstract class ApiAbstract
 {
+    const CONTAINER_NAME_BANK = 'bank';
+    const CONTAINER_NAME_CREDIT_CARD = 'creditCard';
+
+    const TRANSACTION_BASE_TYPE_CREDIT = 'CREDIT';
+    const TRANSACTION_BASE_TYPE_DEBIT = 'DEBIT';
+
     /**
      * The session manager instance.
      *
@@ -42,13 +48,24 @@ abstract class ApiAbstract
      * Build the endpoint to the API.
      *
      * @param string
+     * @param array
      * @return string
      */
-    protected function getEndpoint($path)
+    protected function getEndpoint($path, array $parameters = [])
     {
         $apiUrl = rtrim($this->sessionManager->getApiUrl(), '/');
         $path = ltrim($path, '/');
 
-        return sprintf('%s/%s', $apiUrl, $path);
+        // add query string to endpoint.
+        if (empty($parameters)) {
+            $queryString = '';
+        } else {
+            $glue = strpos($url, '?') ? '&' : '?';
+            $queryString = sprintf('%s%s', $glue, http_build_query($parameters));
+        }
+
+        $endpoint = sprintf('%s/%s%s', $apiUrl, $path, $queryString);
+
+        return $endpoint;
     }
 }

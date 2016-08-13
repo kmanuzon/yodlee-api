@@ -36,6 +36,11 @@ class Client
      */
     public function __construct($apiUrl)
     {
+        if (empty($apiUrl)) {
+
+            throw new \Exception('Missing required argument $apiUrl (Yodlee API URL).');
+        }
+
         $this->sessionManager = new SessionManager($apiUrl);
         $this->httpClient = new HttpClient();
     }

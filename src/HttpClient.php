@@ -109,6 +109,7 @@ class HttpClient
         $responseBody = substr($response, $responseHeaderSize);
         $requestHeader = curl_getinfo($ch, CURLINFO_HEADER_OUT);
 
+        /*
         // diagnostic prints for debugging transaction.
         print str_repeat('=', 40);
         print '<br>';
@@ -133,6 +134,7 @@ class HttpClient
         print str_repeat('=', 40);
         print '<br>';
         print '<br>';
+        */
 
         curl_close($ch);
 

@@ -60,7 +60,7 @@ abstract class ApiAbstract
         if (empty($parameters)) {
             $queryString = '';
         } else {
-            $glue = strpos($url, '?') ? '&' : '?';
+            $glue = strpos($apiUrl, '?') ? '&' : '?';
             $queryString = sprintf('%s%s', $glue, http_build_query($parameters));
         }
 

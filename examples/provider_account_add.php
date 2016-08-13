@@ -12,28 +12,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$yodlee = new \Yodlee\Api\Factory(getenv('COBRAND_NAME'));
+$yodleeApi = new \YodleeApi\Client(getenv('YODLEEAPI_URL'));
 
-// cobrand login.
-$cobrandLogin = $yodlee->cobrand()->login(getenv('COBRAND_LOGIN'), getenv('COBRAND_PASSWORD'));
-print '$cobrandLogin<pre>';
-var_dump($cobrandLogin);
-print '</pre>';
-print 'getCobrandSessionToken()<pre>';
-var_dump($yodlee->getSessionToken()->getCobrandSessionToken());
-print '</pre>';
-
-// user login.
-$userLogin = $yodlee->user()->login(getenv('USER_LOGIN'), getenv('USER_PASSWORD'));
-print '$userLogin<pre>';
-var_dump($userLogin);
-print '</pre>';
-print 'getUserSessionToken()<pre>';
-var_dump($yodlee->getSessionToken()->getUserSessionToken());
-print '</pre>';
-
-// provider account add.
-$addProviderAccount = $yodlee->providerAccounts()->add(16441, [
+$response = $yodleeApi->cobrand()->login(getenv('YODLEEAPI_COBRAND_LOGIN'), getenv('YODLEEAPI_COBRAND_PASSWORD'));
+$response = $yodleeApi->user()->login(getenv('YODLEEAPI_USER_LOGIN'), getenv('YODLEEAPI_USER_PASSWORD'));
+$response = $yodleeApi->providerAccounts()->add(16441, [
     [
         "id" => 65499,
         "value" => "DAPI.site16441.7"
@@ -43,6 +26,7 @@ $addProviderAccount = $yodlee->providerAccounts()->add(16441, [
         "value" => "site16441.7"
     ]
 ]);
-print '$addProviderAccount<pre>';
-print_r($addProviderAccount);
+
+print 'RESULT<pre>';
+print_r($response);
 print '</pre>';

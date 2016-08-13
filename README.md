@@ -4,7 +4,7 @@ A library for accessing financial data from
 integration with Laravel PHP Framework as a dependency.
 
 ## Code Example
-```
+```php
 <?php
 // NOTE: This script assumes installation with composer and using composer's autoloader.
 require_once 'vendor/autoload.php';

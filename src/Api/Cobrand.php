@@ -53,4 +53,26 @@ class Cobrand extends ApiAbstract
         $this->sessionManager->setUserSessionToken('');
         $this->sessionManager->setCobrandSessionToken('');
     }
+
+    /**
+     * Get the public key.
+     *
+     * @see https://developer.yodlee.com/apidocs/index.php#Encryption
+     *
+     * @return \stdClass
+     */
+    public function publicKey()
+    {
+        $url = $this->getEndpoint('/cobrand/publicKey');
+
+        $requestHeaders = [
+            $this->sessionManager->getAuthorizationHeaderString()
+        ];
+
+        $response = $this->httpClient->get($url, $requestHeaders);
+
+        $response = json_decode($response);
+
+        return $response;
+    }
 }

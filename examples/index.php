@@ -11,6 +11,7 @@
 <ul>
     <li><a href="cobrand_login.php">Cobrand Login</a></li>
     <li><a href="cobrand_logout.php">Cobrand Logout</a></li>
+    <li><a href="cobrand_public_key.php">Cobrand Public Key</a> (does not work on Yodlee's sandbox environment)</li>
     <li><a href="user_login.php">User Login</a></li>
     <li><a href="user_logout.php">User Logout</a></li>
     <li><a href="user_register.php">User Register</a></li>

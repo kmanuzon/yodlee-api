@@ -60,6 +60,11 @@ Check the **examples/** directory for sample scripts.
 | object | `update(string $providerAccountIds, array $credentialsParam)`| Update one or multiple provider account. |
 | void | `delete(int $providerAccountId)` | Delete the provider account. |
 
+### `statements()`
+| Return | Method | Description |
+|----|----|----|
+| array | `get([array $filters])` | Fetch all statements of the authenticated user. Refer to [Yodlee API Documentation](https://developer.yodlee.com/apidocs/index.php#!/statements/getStatements) for filters parameter. |
+
 ### `transactions()`
 | Return | Method | Description |
 |----|----|----|

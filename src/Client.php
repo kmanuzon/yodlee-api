@@ -5,6 +5,7 @@ namespace YodleeApi;
 use YodleeApi\Api\Cobrand;
 use YodleeApi\Api\Providers;
 use YodleeApi\Api\ProviderAccounts;
+use YodleeApi\Api\Statements;
 use YodleeApi\Api\Transactions;
 use YodleeApi\Api\User;
 
@@ -73,6 +74,16 @@ class Client
     public function providerAccounts()
     {
         return new ProviderAccounts($this->sessionManager, $this->httpClient);
+    }
+
+    /**
+     * Get the statements API.
+     *
+     * @return \YodleeApi\Api\Statements
+     */
+    public function statements()
+    {
+        return new Statements($this->sessionManager, $this->httpClient);
     }
 
     /**

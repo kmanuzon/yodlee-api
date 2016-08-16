@@ -21,6 +21,7 @@
     <li><a href="provider_account_find.php">Get One of User's Added Provider Account</a></li>
     <li><a href="provider_account_get.php">Get All of User's Added Provider Accounts</a></li>
     <li><a href="provider_account_add.php">Add Provider Account</a></li>
+    <li><a href="statements.php">User Statements</a></li>
 </ul>
 </body>
 </html>

@@ -129,4 +129,48 @@ class User extends ApiAbstract
 
         $this->sessionManager->setUserSessionToken('');
     }
+    
+    /**
+     * Get inputs values for FastLink Support. Refer to Yodlee Api /user/accessTokens.
+     * I prefer this from provider, more trustworthy for clients.
+     *
+     * NOTE: This method returns fastlink form inputs values or boolean false if it fails
+     * to get.
+     *
+     * 
+     * @see https://developer.yodlee.com/apidocs/index.php#!/user/getAccessTokens
+     *
+     * @param int
+     * @return array|bool
+     */
+    public function accessTokensIputs($app = 10003600)
+    {
+        $url = $this->getEndpoint('/user/accessTokens');
+
+        $parameters = [
+            "appIds" => $app
+        ];
+
+        $requestHeaders = [
+            $this->sessionManager->getAuthorizationHeaderString()
+        ];
+
+        $response = $this->httpClient->get($url, $parameters, $requestHeaders);
+
+        $response = json_decode($response);
+
+        if(empty($reponse->user->accessTokens->value)) {
+            return false;
+        }
+
+        $inputs = [
+            "app"           => $app,
+            "rsession"      => $this->sessionManager->getUserSessionToken(),
+            "token"         => $respone->user->accessTokens->value
+        ];
+
+        $inputs = json_decode($inputs);
+
+        return $inputs;
+    }
 }
